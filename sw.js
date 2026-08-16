@@ -1,4 +1,4 @@
-const CACHE_NAME = "zhiqiang-home-v2";
+const CACHE_NAME = "zhiqiang-home-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,7 +6,7 @@ const APP_SHELL = [
   "./script.js",
   "./manifest.webmanifest",
   "./assets/icon.svg",
-  "./assets/zhang-zhiqiang.jpg"
+  "./assets/avatar.jpg"
 ];
 
 self.addEventListener("install", (event) => {
