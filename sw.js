@@ -1,9 +1,8 @@
-const CACHE_NAME = "zhiqiang-home-v1";
+const CACHE_NAME = "zhiqiang-home-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css",
-  "./profile.js",
   "./script.js",
   "./manifest.webmanifest",
   "./assets/icon.svg",
