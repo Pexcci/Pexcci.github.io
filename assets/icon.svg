@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="116" fill="#0b1020"/>
+  <circle cx="380" cy="132" r="94" fill="#8b7dff" opacity=".35"/>
+  <circle cx="128" cy="392" r="112" fill="#54d9ff" opacity=".2"/>
+  <path d="M98 150h316v212H98z" fill="none" stroke="#9eff62" stroke-width="12" opacity=".25"/>
+  <text x="256" y="295" fill="#f4f6fb" font-family="Arial, sans-serif" font-size="118" font-weight="700" text-anchor="middle">ZZQ</text>
+  <path d="M158 332h196" stroke="#9eff62" stroke-width="14" stroke-linecap="round"/>
+</svg>
