@@ -1,4 +1,4 @@
-const CACHE_NAME = "zhiqiang-home-v4";
+const CACHE_NAME = "zhiqiang-home-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
