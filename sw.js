@@ -1,9 +1,10 @@
-const CACHE_NAME = "zhiqiang-home-v5";
+const CACHE_NAME = "zhiqiang-home-v6";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./script.js",
+  "./resources.json",
   "./manifest.webmanifest",
   "./assets/icon.svg",
   "./assets/avatar.jpg"
@@ -25,6 +26,16 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET" || new URL(event.request.url).origin !== location.origin) return;
+  if (new URL(event.request.url).pathname.endsWith("/resources.json")) {
+    event.respondWith(
+      fetch(event.request).then((response) => {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put("./resources.json", copy));
+        return response;
+      }).catch(() => caches.match("./resources.json"))
+    );
+    return;
+  }
   event.respondWith(
     caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
       const copy = response.clone();

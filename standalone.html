@@ -572,17 +572,17 @@ a {
           <h2>学习资源</h2>
           <ul class="resource-list">
             <li>
-              <a href="https://www.xiaohongshu.com/search_result/?keyword=PDE中的极值原理&amp;source=web_search_result_notes" target="_blank" rel="noreferrer">
+              <a href="https://www.xiaohongshu.com/explore/6a81c0f1000000002202fdb8?xsec_token=ABVVDSC_Yxmw98XbPkKU3cT-LxOrxcHC2kDjVQnd2-SQU=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
                 PDE中的极值原理
               </a>
             </li>
             <li>
-              <a href="https://www.xiaohongshu.com/search_result/?keyword=ODE在振动问题中的应用&amp;source=web_search_result_notes" target="_blank" rel="noreferrer">
+              <a href="https://www.xiaohongshu.com/explore/6a7852f9000000002c006155?xsec_token=ABCHBkfo8jTHSUKE0X6fv8lLbWGMFRFav4lQDmKH9yQ_s=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
                 ODE在振动问题中的应用
               </a>
             </li>
             <li>
-              <a href="https://www.xiaohongshu.com/search_result/?keyword=ODE中的几个重要概念&amp;source=web_search_result_notes" target="_blank" rel="noreferrer">
+              <a href="https://www.xiaohongshu.com/explore/6a75d3700000000033035fe3?xsec_token=ABWzwEDPWdgGjqtRFrCiYt2DD2BnlLBh0tCaa26vK7mYs=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
                 ODE中的几个重要概念
               </a>
             </li>
@@ -592,27 +592,27 @@ a {
               </a>
             </li>
             <li>
-              <a href="https://www.xiaohongshu.com/search_result/?keyword=NPU数值分析期中（2024）&amp;source=web_search_result_notes" target="_blank" rel="noreferrer">
+              <a href="https://www.xiaohongshu.com/explore/6a2d68fa000000003503053f?xsec_token=ABk42w9_3qa2Mjbns6UnB2y2A_GQxzQHav5mD6D9Do7UQ=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
                 NPU数值分析期中（2024）
               </a>
             </li>
             <li>
-              <a href="https://www.xiaohongshu.com/search_result/?keyword=NPU数值分析期末（2024）&amp;source=web_search_result_notes" target="_blank" rel="noreferrer">
+              <a href="https://www.xiaohongshu.com/explore/6a2d63210000000022027649?xsec_token=ABk42w9_3qa2Mjbns6UnB2y4JY3LomFCDNKmpt_P0rywo=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
                 NPU数值分析期末（2024）
               </a>
             </li>
             <li>
-              <a href="https://www.xiaohongshu.com/search_result/?keyword=NPU数值分析期末（2023）&amp;source=web_search_result_notes" target="_blank" rel="noreferrer">
+              <a href="https://www.xiaohongshu.com/explore/6a0350f2000000003503a087?xsec_token=ABKCleoCKhTRG6PHSp49fuGyp6nQXC6x2Q1Bc5bElRu6U=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
                 NPU数值分析期末（2023）
               </a>
             </li>
             <li>
-              <a href="https://www.xiaohongshu.com/search_result/?keyword=实变函数第二章作业&amp;source=web_search_result_notes" target="_blank" rel="noreferrer">
+              <a href="https://www.xiaohongshu.com/explore/69d383d60000000023013a4c?xsec_token=ABsl5JYBFFWLkAsLMcCXubapgxtsEkmGj_SzWrrrYaVGA=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
                 实变函数第二章作业
               </a>
             </li>
             <li>
-              <a href="https://www.xiaohongshu.com/search_result/?keyword=实变函数第一章作业&amp;source=web_search_result_notes" target="_blank" rel="noreferrer">
+              <a href="https://www.xiaohongshu.com/explore/69ce838a000000001b0025ef?xsec_token=ABKqzrdD-iMAwFNTlMuUis1il6ylaIlx0Ips7P5q1yj54=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
                 实变函数第一章作业
               </a>
             </li>
@@ -671,6 +671,32 @@ a {
   sections.forEach((section) => sectionObserver.observe(section));
 
   document.querySelector("#year").textContent = new Date().getFullYear();
+
+  const resourceList = document.querySelector(".resource-list");
+  if (resourceList) {
+    fetch(`./resources.json?v=${Date.now()}`, { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error("Resource data unavailable");
+        return response.json();
+      })
+      .then((resources) => {
+        if (!Array.isArray(resources) || resources.length === 0) return;
+        const fragment = document.createDocumentFragment();
+        resources.forEach((resource) => {
+          if (!resource?.title || !resource?.url) return;
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = resource.url;
+          link.target = "_blank";
+          link.rel = "noreferrer";
+          link.textContent = resource.title;
+          item.append(link);
+          fragment.append(item);
+        });
+        if (fragment.childElementCount > 0) resourceList.replaceChildren(fragment);
+      })
+      .catch(() => {});
+  }
 
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
     window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));

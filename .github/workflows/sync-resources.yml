@@ -1,0 +1,41 @@
+name: Sync learning resource titles
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-learning-resources
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Read current public titles
+        run: node scripts/sync-resources.mjs
+
+      - name: Publish changed titles
+        shell: bash
+        run: |
+          if git diff --quiet -- resources.json; then
+            echo "No title changes to publish."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resources.json
+          git commit -m "Update learning resource titles"
+          git push
