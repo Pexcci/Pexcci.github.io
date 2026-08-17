@@ -298,6 +298,34 @@ a {
   font-size: 14px;
 }
 
+.resource-list {
+  padding: 0 !important;
+  list-style: none;
+}
+
+.resource-list li {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.resource-list li:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.resource-list a {
+  font-weight: 600;
+}
+
+.resource-list span {
+  flex: none;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .site-footer {
   padding: 28px 20px calc(28px + env(safe-area-inset-bottom));
   color: var(--muted);
@@ -456,6 +484,7 @@ a {
   .author-content h2 { font-size: 19px; }
   .author-bio { font-size: 12px; }
   .page-header h1 { font-size: 34px; }
+  .resource-list li { align-items: flex-start; flex-direction: column; gap: 3px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

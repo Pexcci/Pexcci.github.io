@@ -311,6 +311,34 @@ a {
   font-size: 14px;
 }
 
+.resource-list {
+  padding: 0 !important;
+  list-style: none;
+}
+
+.resource-list li {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.resource-list li:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.resource-list a {
+  font-weight: 600;
+}
+
+.resource-list span {
+  flex: none;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .site-footer {
   padding: 28px 20px calc(28px + env(safe-area-inset-bottom));
   color: var(--muted);
@@ -469,6 +497,7 @@ a {
   .author-content h2 { font-size: 19px; }
   .author-bio { font-size: 12px; }
   .page-header h1 { font-size: 34px; }
+  .resource-list li { align-items: flex-start; flex-direction: column; gap: 3px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -492,6 +521,7 @@ a {
           <a href="#top">首页</a>
           <a href="#about">关于我</a>
           <a href="#interests">研究兴趣</a>
+          <a href="#resources">学习资源</a>
           <a href="#contact">联系方式</a>
         </div>
       </nav>
@@ -546,6 +576,18 @@ a {
             <li>微分方程与有限元方法</li>
             <li>数学建模与工程仿真</li>
             <li>人工智能与数学的交叉应用</li>
+          </ul>
+        </section>
+
+        <section id="resources">
+          <h2>学习资源</h2>
+          <ul class="resource-list">
+            <li>
+              <a href="https://www.xiaohongshu.com/explore/6a2d6a4f000000003502abbe?xsec_token=ABk42w9_3qa2Mjbns6UnB2yxhOGpGcN2S3giscQtUhceo=&amp;xsec_source=pc_user" target="_blank" rel="noreferrer">
+                NPU数值分析期中（2025）
+              </a>
+              <span>小红书 ↗</span>
+            </li>
           </ul>
         </section>
 
